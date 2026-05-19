@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M.V. Hariharan — Robotics & Embedded Systems Engineer</title>
+<meta name="description" content="Portfolio of M.V. Hariharan — Robotics & Embedded Systems Engineer specializing in microcontrollers, motor control, sensor integration, and CAD-based mechanical design.">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080808;
+  --bg2: #0e0e0e;
+  --bg3: #141414;
+  --white: #eceae5;
+  --white60: rgba(236,234,229,0.6);
+  --white40: rgba(236,234,229,0.4);
+  --white15: rgba(236,234,229,0.15);
+  --white08: rgba(236,234,229,0.08);
+  --white04: rgba(236,234,229,0.04);
+  --accent: #e84c1e;
+  --accent-glow: rgba(232,76,30,0.15);
+  --teal: #1ee8c8;
+  --teal-glow: rgba(30,232,200,0.1);
+  --gold: #f0c040;
+  --mono: 'Space Mono', monospace;
+  --display: 'Unbounded', sans-serif;
+  --body: 'Instrument Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--body);
+  font-weight: 400;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+}
+
+h1, h2, h3 { font-family: var(--display); font-weight: 600; }
+.label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 4rem; }
+@media (max-width: 768px) { .container { padding: 0 1.5rem; } }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 1.25rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(8,8,8,0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--white08);
+}
+.nav-brand {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.nav-brand em { font-style: normal; color: var(--accent); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--white40);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.25s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  padding: 0.55rem 1.4rem;
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none; cursor: pointer;
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px var(--accent-glow); }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+.hero-overline {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--teal);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.hero-overline::before {
+  content: ''; width: 40px; height: 1px; background: var(--teal);
+}
+.hero-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(3rem, 6.5vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+.hero-name .accent { color: var(--accent); }
+.hero-tagline {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--white60);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+}
+.hero-tagline strong { color: var(--white); font-weight: 600; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-main {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-main:hover { transform: translateY(-2px); box-shadow: 0 6px 24px var(--accent-glow); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  background: transparent;
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--white15);
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+.btn-outline:hover { border-color: var(--white40); background: var(--white04); }
+
+.hero-card {
+  position: relative;
+  background: var(--bg2);
+  border: 1px solid var(--white08);
+  padding: 2.5rem;
+}
+.hero-card::before {
+  content: '';
+  position: absolute; top: -1px; left: 2rem; right: 2rem;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.hero-card-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.hero-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.hero-stat {
+  padding: 1rem;
+  background: var(--white04);
+  border: 1px solid var(--white08);
+}
+.hero-stat .val {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.hero-stat .desc {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--white40);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.hero-bg-element {
+  position: absolute;
+  right: -8%;
+  bottom: -10%;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 28vw;
+  color: rgba(232,76,30,0.025);
+  line-height: 0.8;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* SECTION HEADERS */
+.sec-header {
+  display: flex; align-items: center; gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+.sec-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+}
+.sec-title {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4.5vw, 3.8rem);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+.sec-line { flex: 1; height: 1px; background: var(--white08); max-width: 200px; }
+
+/* ABOUT */
+#about { padding: 8rem 0; background: var(--bg2); }
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: start;
+}
+.about-text p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--white60);
+  margin-bottom: 1.2rem;
+}
+.about-text strong { color: var(--white); font-weight: 600; }
+.brand-statement {
+  margin-top: 2.5rem;
+  padding: 1.8rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-glow);
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+.tools-matrix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--white08);
+  border: 1px solid var(--white08);
+}
+.tool-cell {
+  background: var(--bg2);
+  padding: 1.8rem;
+  transition: background 0.3s;
+}
+.tool-cell:hover { background: var(--bg3); }
+.tool-cell .t-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+.tool-cell .t-name {
+  font-family: var(--display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.tool-cell .t-detail {
+  font-size: 0.8rem;
+  color: var(--white40);
+  line-height: 1.5;
+}
+
+/* SKILLS */
+#skills { padding: 8rem 0; background: var(--bg); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--white08);
+  border: 1px solid var(--white08);
+}
+.skill-block {
+  background: var(--bg);
+  padding: 2rem;
+  position: relative;
+  transition: background 0.3s;
+}
+.skill-block:hover { background: var(--bg2); }
+.skill-block::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.4s;
+}
+.skill-block:hover::after { width: 100%; }
+.skill-category {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--teal);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.skill-heading {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+.skill-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.chip {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  padding: 0.3rem 0.65rem;
+  background: var(--white04);
+  border: 1px solid var(--white08);
+  color: var(--white40);
+  letter-spacing: 0.04em;
+  transition: border-color 0.2s, color 0.2s;
+}
+.chip:hover { border-color: var(--accent); color: var(--white); }
+
+/* PROJECTS */
+#projects { padding: 8rem 0; background: var(--bg2); }
+.project-case {
+  border: 1px solid var(--white08);
+  background: var(--bg);
+  margin-bottom: 2rem;
+  transition: border-color 0.3s;
+  overflow: hidden;
+}
+.project-case:hover { border-color: rgba(232,76,30,0.3); }
+.proj-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem 2.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+.proj-num {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: rgba(232,76,30,0.15);
+  width: 60px;
+}
+.proj-meta { flex: 1; }
+.proj-badge {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid;
+  display: inline-block;
+  margin-bottom: 0.6rem;
+}
+.proj-badge.flagship { color: var(--accent); border-color: var(--accent); background: var(--accent-glow); }
+.proj-badge.complete { color: var(--teal); border-color: var(--teal); background: var(--teal-glow); }
+.proj-badge.research { color: var(--gold); border-color: var(--gold); background: rgba(240,192,64,0.08); }
+.proj-badge.collection { color: var(--white40); border-color: var(--white15); }
+.proj-name {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4rem;
+}
+.proj-oneliner {
+  font-size: 0.9rem;
+  color: var(--white40);
+}
+.proj-toggle {
+  font-size: 1.5rem;
+  color: var(--white15);
+  transition: color 0.2s, transform 0.3s;
+  font-weight: 300;
+}
+.project-case.open .proj-toggle { transform: rotate(45deg); color: var(--accent); }
+
+.proj-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+.project-case.open .proj-body { max-height: 2000px; }
+.proj-body-inner {
+  padding: 0 2.5rem 2.5rem;
+  border-top: 1px solid var(--white08);
+}
+.proj-section { margin-top: 2rem; }
+.proj-section-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.proj-section-label::before {
+  content: ''; width: 12px; height: 1px; background: var(--accent);
+}
+.proj-section p, .proj-section li {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--white60);
+}
+.proj-section ul { list-style: none; padding: 0; }
+.proj-section li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+.proj-section li::before {
+  content: '\25B8';
+  position: absolute; left: 0;
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+.proj-section strong { color: var(--white); font-weight: 600; }
+.proj-tech-row {
+  display: flex; gap: 0.4rem; flex-wrap: wrap;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--white08);
+}
+.proj-impact {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+.impact-card {
+  padding: 1rem;
+  background: var(--accent-glow);
+  border: 1px solid rgba(232,76,30,0.2);
+  text-align: center;
+}
+.impact-card .impact-val {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--accent);
+  display: block;
+}
+.impact-card .impact-desc {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--white40);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+/* EXPERIENCE */
+#experience { padding: 8rem 0; background: var(--bg); }
+.exp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+.exp-col-title {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.exp-col-title::after { content: ''; flex: 1; height: 1px; background: var(--white08); }
+.exp-entry {
+  position: relative;
+  padding-left: 1.5rem;
+  padding-bottom: 2.5rem;
+  border-left: 1px solid var(--white08);
+}
+.exp-entry::before {
+  content: '';
+  position: absolute;
+  left: -4.5px; top: 6px;
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.exp-entry:last-child { border-left-color: transparent; padding-bottom: 0; }
+.exp-date {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  margin-bottom: 0.3rem;
+}
+.exp-role {
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+.exp-org {
+  font-size: 0.82rem;
+  color: var(--white40);
+  margin-bottom: 0.5rem;
+}
+.exp-desc {
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: var(--white60);
+}
+.exp-award {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  margin-top: 0.6rem;
+  padding: 0.35rem 0.8rem;
+  background: var(--accent-glow);
+  border: 1px solid rgba(232,76,30,0.2);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+
+/* CERTIFICATIONS */
+#certs { padding: 8rem 0; background: var(--bg2); }
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--white08);
+  border: 1px solid var(--white08);
+  margin-bottom: 3rem;
+}
+.cert-item {
+  background: var(--bg2);
+  padding: 2rem;
+  transition: background 0.25s;
+}
+.cert-item:hover { background: var(--bg3); }
+.cert-icon { font-size: 1.6rem; margin-bottom: 0.7rem; display: block; }
+.cert-title {
+  font-family: var(--display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.cert-issuer {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--white40);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.awards-row { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.award-pill {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  background: var(--white04);
+  border: 1px solid var(--white08);
+  font-size: 0.78rem;
+  color: var(--white60);
+  transition: border-color 0.2s;
+}
+.award-pill:hover { border-color: var(--accent); }
+.award-pill strong { color: var(--white); font-weight: 600; }
+.award-icon { font-size: 1rem; }
+
+/* CONTACT */
+#contact { padding: 8rem 0; background: var(--bg); }
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.contact-big {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+.contact-big em { font-style: normal; color: var(--accent); }
+.contact-sub {
+  font-size: 1rem;
+  color: var(--white40);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.contact-links-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.c-link {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--white08);
+  text-decoration: none;
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.c-link:hover { border-color: var(--accent); background: var(--accent-glow); }
+.c-link-icon { color: var(--accent); font-size: 1rem; width: 20px; text-align: center; }
+.c-link-label { flex: 1; }
+.c-link-arrow { color: var(--white15); transition: color 0.2s; }
+.c-link:hover .c-link-arrow { color: var(--accent); }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.c-field { display: flex; flex-direction: column; gap: 0.35rem; }
+.c-field label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--white40);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.c-field input, .c-field textarea {
+  background: var(--white04);
+  border: 1px solid var(--white08);
+  color: var(--white);
+  padding: 0.9rem 1rem;
+  font-family: var(--body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+}
+.c-field input:focus, .c-field textarea:focus { border-color: var(--accent); }
+.c-field input::placeholder, .c-field textarea::placeholder { color: var(--white15); }
+
+footer {
+  padding: 2rem 4rem;
+  border-top: 1px solid var(--white08);
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--white40);
+  letter-spacing: 0.08em;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-card { margin-top: 2rem; }
+  .about-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .exp-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .proj-header { grid-template-columns: 1fr; gap: 0.5rem; }
+  .proj-num { display: none; }
+  .proj-header { padding: 1.5rem; }
+  .proj-body-inner { padding: 0 1.5rem 1.5rem; }
+  footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-brand">MVH<em>.</em></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certs">Certifications</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-overline">Robotics &amp; Embedded Systems Engineer</div>
+        <h1 class="hero-name">M.V.<br><span class="accent">HARI</span>HARAN</h1>
+        <p class="hero-tagline">I design, build, and integrate <strong>complete robotic systems</strong> — from embedded firmware and sensor fusion to CAD-based mechanical prototypes. Engineering intelligent machines that solve real-world problems.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-main">View Case Studies &#8595;</a>
+          <a href="#contact" class="btn-outline">Let's Connect</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">// Engineer Profile</div>
+        <div class="hero-stats-grid">
+          <div class="hero-stat">
+            <span class="val">10+</span>
+            <span class="desc">Projects Shipped</span>
+          </div>
+          <div class="hero-stat">
+            <span class="val">8.4</span>
+            <span class="desc">CGPA &middot; B.E.</span>
+          </div>
+          <div class="hero-stat">
+            <span class="val">3</span>
+            <span class="desc">Internships</span>
+          </div>
+          <div class="hero-stat">
+            <span class="val" style="font-size:1.2rem;">&#x1F3C6;</span>
+            <span class="desc">Best Employee '25</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bg-element">MVH</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">About</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="about-layout">
+      <div class="about-text reveal">
+        <p>I'm a <strong>Robotics &amp; Embedded Systems Engineer</strong> with a proven track record of independently designing, building, and integrating complete robotic systems from initial concept to functional prototype.</p>
+        <p>Currently driving <strong>end-to-end R&amp;D at Freshot Robotics</strong> — designing mechanical components using advanced CAD tools and 3D printing, developing electronic circuits for embedded control systems, and delivering technically efficient solutions to complex engineering challenges.</p>
+        <p>My engineering philosophy centers on <strong>full-stack hardware thinking</strong>: I bridge mechanical design, embedded firmware, sensor integration, and motor control into cohesive systems that perform reliably in real-world conditions.</p>
+        <div class="brand-statement">
+          "I don't just design parts — I engineer complete systems. From the microcontroller logic to the mechanical assembly, I own every layer of the stack."
+        </div>
+      </div>
+      <div class="tools-matrix reveal">
+        <div class="tool-cell">
+          <span class="t-icon">&#9881;&#65039;</span>
+          <div class="t-name">Mechanical Design</div>
+          <div class="t-detail">SolidWorks, Fusion 360, 3D Printing, Prototyping</div>
+        </div>
+        <div class="tool-cell">
+          <span class="t-icon">&#9889;</span>
+          <div class="t-name">Embedded Systems</div>
+          <div class="t-detail">ESP32, Arduino, Raspberry Pi, Jetson Nano</div>
+        </div>
+        <div class="tool-cell">
+          <span class="t-icon">&#128268;</span>
+          <div class="t-name">Firmware</div>
+          <div class="t-detail">Embedded C, C++, SPI, I2C, UART, PWM, GPIO</div>
+        </div>
+        <div class="tool-cell">
+          <span class="t-icon">&#128225;</span>
+          <div class="t-name">Actuation &amp; Sensing</div>
+          <div class="t-detail">Motor Control, IMU, LIDAR, Ultrasonic, Encoders</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Core Skills</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-block">
+        <div class="skill-category">Hardware Platforms</div>
+        <div class="skill-heading">Microcontrollers</div>
+        <div class="skill-chips">
+          <span class="chip">ESP32</span><span class="chip">Arduino</span><span class="chip">Raspberry Pi</span><span class="chip">Jetson Nano</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-category">Mechanical</div>
+        <div class="skill-heading">CAD &amp; Prototyping</div>
+        <div class="skill-chips">
+          <span class="chip">SolidWorks</span><span class="chip">Fusion 360</span><span class="chip">3D Printing</span><span class="chip">Rapid Prototyping</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-category">Firmware</div>
+        <div class="skill-heading">Embedded Development</div>
+        <div class="skill-chips">
+          <span class="chip">Embedded C</span><span class="chip">C++</span><span class="chip">Firmware Architecture</span><span class="chip">Real-Time Systems</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-category">Communication</div>
+        <div class="skill-heading">Protocols &amp; Interfaces</div>
+        <div class="skill-chips">
+          <span class="chip">SPI</span><span class="chip">I2C</span><span class="chip">UART</span><span class="chip">PWM</span><span class="chip">GPIO</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-category">Actuation</div>
+        <div class="skill-heading">Motor Control</div>
+        <div class="skill-chips">
+          <span class="chip">Stepper Motors</span><span class="chip">Servo Motors</span><span class="chip">DC Motors</span><span class="chip">Encoder Feedback</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-category">Perception</div>
+        <div class="skill-heading">Sensor Integration</div>
+        <div class="skill-chips">
+          <span class="chip">IMU</span><span class="chip">Ultrasonic</span><span class="chip">Encoder</span><span class="chip">LIDAR</span><span class="chip">GPS</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-category">AI &amp; Vision</div>
+        <div class="skill-heading">Edge Computing</div>
+        <div class="skill-chips">
+          <span class="chip">Jetson Nano</span><span class="chip">Face Detection</span><span class="chip">Python</span><span class="chip">OpenCV</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-category">Systems</div>
+        <div class="skill-heading">Integration &amp; Testing</div>
+        <div class="skill-chips">
+          <span class="chip">HW-SW Integration</span><span class="chip">System Testing</span><span class="chip">PLC Programming</span><span class="chip">Commissioning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Featured Projects</h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <!-- PROJECT 1 -->
+    <div class="project-case reveal" data-proj>
+      <div class="proj-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="proj-num">01</div>
+        <div class="proj-meta">
+          <span class="proj-badge flagship">Flagship Project</span>
+          <div class="proj-name">Autonomous Agricultural Robot</div>
+          <div class="proj-oneliner">GPS-enabled robot for automated ploughing, seeding, and fertilizing</div>
+        </div>
+        <div class="proj-toggle">+</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-body-inner">
+          <div class="proj-section">
+            <div class="proj-section-label">Problem Statement</div>
+            <p>Indian agriculture faces a severe labor shortage with rising manual labor costs. Traditional farming methods for ploughing, seeding, and fertilizing are time-intensive, inconsistent in coverage, and economically unsustainable for small-to-mid-scale farmers.</p>
+          </div>
+          <div class="proj-section">
+            <div class="proj-section-label">Engineering Approach</div>
+            <ul>
+              <li>Designed a <strong>GPS-enabled autonomous navigation system</strong> with waypoint-based path planning for precise field coverage</li>
+              <li>Integrated <strong>multi-sensor fusion</strong> (GPS + IMU + ultrasonic) for accurate localization and obstacle detection</li>
+              <li>Engineered modular tool-attachment mechanism for interchangeable ploughing, seeding, and fertilizing implements</li>
+              <li>Developed embedded firmware on microcontroller for real-time motor control and sensor data processing</li>
+            </ul>
+          </div>
+          <div class="proj-section">
+            <div class="proj-section-label">Technical Solution</div>
+            <ul>
+              <li>Custom chassis with differential drive system for terrain adaptability</li>
+              <li>GPS-guided navigation with <strong>sub-meter accuracy</strong> for row-by-row field coverage</li>
+              <li>PWM-based motor control with encoder feedback for speed regulation across varying soil conditions</li>
+              <li>Autonomous operation mode with manual override capability for safety</li>
+            </ul>
+          </div>
+          <div class="proj-section">
+            <div class="proj-section-label">Impact &amp; Results</div>
+            <div class="proj-impact">
+              <div class="impact-card"><span class="impact-val">3-in-1</span><span class="impact-desc">Task Automation</span></div>
+              <div class="impact-card"><span class="impact-val">&#8595; 60%</span><span class="impact-desc">Labor Reduction</span></div>
+              <div class="impact-card"><span class="impact-val">&#8593; Precision</span><span class="impact-desc">GPS Navigation</span></div>
+            </div>
+          </div>
+          <div class="proj-tech-row">
+            <span class="chip">GPS Module</span><span class="chip">IMU</span><span class="chip">Ultrasonic</span><span class="chip">ESP32</span><span class="chip">Motor Drivers</span><span class="chip">Embedded C</span><span class="chip">SolidWorks</span><span class="chip">3D Printing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-case reveal" data-proj>
+      <div class="proj-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="proj-num">02</div>
+        <div class="proj-meta">
+          <span class="proj-badge flagship">Robotics</span>
+          <div class="proj-name">Wall Painting Robot</div>
+          <div class="proj-oneliner">Automated robotic system for uniform, waste-free wall painting</div>
+        </div>
+        <div class="proj-toggle">+</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-body-inner">
+          <div class="proj-section">
+            <div class="proj-section-label">Problem Statement</div>
+            <p>Manual wall painting in construction is labor-intensive, produces inconsistent finishes, and wastes significant paint material. Workers face health hazards from prolonged exposure to paint fumes and physically demanding overhead work.</p>
+          </div>
+          <div class="proj-section">
+            <div class="proj-section-label">Engineering Approach</div>
+            <ul>
+              <li>Designed a <strong>motorized roller mechanism</strong> with controlled paint feed for uniform application thickness</li>
+              <li>Engineered vertical traversal system using lead-screw or rack-and-pinion for precise Y-axis movement</li>
+              <li>Developed embedded control logic for <strong>automated paint-and-move cycles</strong> with adjustable stroke patterns</li>
+              <li>Optimized paint delivery to minimize dripping, overspray, and material waste</li>
+            </ul>
+          </div>
+          <div class="proj-section">
+            <div class="proj-section-label">Impact &amp; Results</div>
+            <div class="proj-impact">
+              <div class="impact-card"><span class="impact-val">&#8595; Waste</span><span class="impact-desc">Paint Optimization</span></div>
+              <div class="impact-card"><span class="impact-val">Uniform</span><span class="impact-desc">Coat Thickness</span></div>
+              <div class="impact-card"><span class="impact-val">&#8595; Labor</span><span class="impact-desc">Manual Reduction</span></div>
+            </div>
+          </div>
+          <div class="proj-tech-row">
+            <span class="chip">Motor Control</span><span class="chip">Lead Screw</span><span class="chip">Arduino</span><span class="chip">Sensors</span><span class="chip">Mechanism Design</span><span class="chip">CAD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-case reveal" data-proj>
+      <div class="proj-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="proj-num">03</div>
+        <div class="proj-meta">
+          <span class="proj-badge complete">Healthcare</span>
+          <div class="proj-name">Automated Medicine Dispenser</div>
+          <div class="proj-oneliner">Smart dispensing system for precise, timely medication delivery</div>
+        </div>
+        <div class="proj-toggle">+</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-body-inner">
+          <div class="proj-section">
+            <div class="proj-section-label">Problem Statement</div>
+            <p>Medication non-adherence — especially among elderly and chronically ill patients — leads to worsened health outcomes and increased hospitalization. Manual pill management is error-prone and unreliable without caregiver supervision.</p>
+          </div>
+          <div class="proj-section">
+            <div class="proj-section-label">Engineering Approach</div>
+            <ul>
+              <li>Designed a <strong>multi-compartment rotary dispensing mechanism</strong> with individual slot actuation for per-dose accuracy</li>
+              <li>Integrated <strong>real-time clock (RTC) module</strong> for scheduled dispensing at prescribed time intervals</li>
+              <li>Developed sensor-based verification to confirm successful pill drop and detect jams</li>
+              <li>Implemented alert system (buzzer + LED) for missed doses and empty compartments</li>
+            </ul>
+          </div>
+          <div class="proj-section">
+            <div class="proj-section-label">Impact &amp; Results</div>
+            <div class="proj-impact">
+              <div class="impact-card"><span class="impact-val">&#8593;</span><span class="impact-desc">Patient Compliance</span></div>
+              <div class="impact-card"><span class="impact-val">Precise</span><span class="impact-desc">Dose Dispensing</span></div>
+              <div class="impact-card"><span class="impact-val">24/7</span><span class="impact-desc">Autonomous Operation</span></div>
+            </div>
+          </div>
+          <div class="proj-tech-row">
+            <span class="chip">Microcontroller</span><span class="chip">RTC Module</span><span class="chip">IR Sensor</span><span class="chip">Servo Motor</span><span class="chip">Embedded C</span><span class="chip">3D Printing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-case reveal" data-proj>
+      <div class="proj-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="proj-num">04</div>
+        <div class="proj-meta">
+          <span class="proj-badge complete">Embedded + UX</span>
+          <div class="proj-name">Portable Vending Machine</div>
+          <div class="proj-oneliner">Compact, multi-payment vending system for flexible deployment</div>
+        </div>
+        <div class="proj-toggle">+</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-body-inner">
+          <div class="proj-section">
+            <div class="proj-section-label">Problem Statement</div>
+            <p>Traditional vending machines are bulky, expensive, and limited to fixed installations. There is a need for compact, affordable vending solutions deployable in diverse environments — events, offices, campuses — with modern payment flexibility.</p>
+          </div>
+          <div class="proj-section">
+            <div class="proj-section-label">Engineering Approach</div>
+            <ul>
+              <li>Engineered <strong>compact dispensing mechanism</strong> optimized for portability and diverse product dimensions</li>
+              <li>Integrated <strong>multi-modal payment</strong>: cash acceptor, contactless card reader, and UPI/mobile wallet</li>
+              <li>Designed modular product trays for quick reconfiguration across use cases</li>
+              <li>Developed embedded firmware for payment validation, motor actuation, and inventory tracking</li>
+            </ul>
+          </div>
+          <div class="proj-tech-row">
+            <span class="chip">Payment Gateway</span><span class="chip">NFC/RFID</span><span class="chip">Microcontroller</span><span class="chip">Motor Driver</span><span class="chip">SolidWorks</span><span class="chip">Embedded C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 -->
+    <div class="project-case reveal" data-proj>
+      <div class="proj-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="proj-num">05</div>
+        <div class="proj-meta">
+          <span class="proj-badge complete">Automation</span>
+          <div class="proj-name">Stationery Vending Machine</div>
+          <div class="proj-oneliner">Microcontroller-driven automated dispensing for educational environments</div>
+        </div>
+        <div class="proj-toggle">+</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-body-inner">
+          <div class="proj-section">
+            <div class="proj-section-label">Problem Statement</div>
+            <p>Students and employees in educational and corporate settings frequently need stationery supplies but lack convenient access outside business hours. Manual distribution is inefficient and unscalable for high-traffic environments.</p>
+          </div>
+          <div class="proj-section">
+            <div class="proj-section-label">Engineering Approach</div>
+            <ul>
+              <li>Engineered dispensing mechanism using <strong>microcontroller + sensor technology</strong> for automated product release</li>
+              <li>Designed multi-slot architecture to accommodate different product form factors</li>
+              <li>Implemented coin-detection and validation circuit for payment processing</li>
+              <li>Validated deployment potential in <strong>high-traffic campus areas</strong> for maximum accessibility</li>
+            </ul>
+          </div>
+          <div class="proj-tech-row">
+            <span class="chip">Microcontroller</span><span class="chip">IR Sensor</span><span class="chip">DC Motor</span><span class="chip">Coin Detector</span><span class="chip">Prototyping</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 6 -->
+    <div class="project-case reveal" data-proj>
+      <div class="proj-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="proj-num">06</div>
+        <div class="proj-meta">
+          <span class="proj-badge collection">8 Projects</span>
+          <div class="proj-name">IoT &amp; Robotics Portfolio</div>
+          <div class="proj-oneliner">Comprehensive collection of embedded &amp; robotic prototypes</div>
+        </div>
+        <div class="proj-toggle">+</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-body-inner">
+          <div class="proj-section">
+            <div class="proj-section-label">Project Collection</div>
+            <ul>
+              <li><strong>Obstacle Avoidance Robot</strong> — Ultrasonic sensor-based autonomous navigation with real-time path correction</li>
+              <li><strong>Line Follower Robot</strong> — IR array-based line tracking with PID-tuned differential drive (Runner-up, SRMEEC)</li>
+              <li><strong>ASRS Prototype</strong> — Automated Storage &amp; Retrieval System with XY positioning and gripper mechanism</li>
+              <li><strong>Robotic Arm Prototype</strong> — Multi-DOF articulated arm with servo-driven joints for pick-and-place</li>
+              <li><strong>Laser Security System</strong> — LDR + laser-based intrusion detection with alarm triggering</li>
+              <li><strong>Raspberry Pi Robot</strong> — Linux-based mobile platform with camera integration</li>
+              <li><strong>AGV using LIDAR</strong> — Autonomous Guided Vehicle with LIDAR-based mapping and navigation</li>
+              <li><strong>Face Detection System</strong> — Python + OpenCV real-time face detection and recognition</li>
+            </ul>
+          </div>
+          <div class="proj-tech-row">
+            <span class="chip">Arduino</span><span class="chip">Raspberry Pi</span><span class="chip">ESP32</span><span class="chip">LIDAR</span><span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">Ultrasonic</span><span class="chip">IR Sensors</span><span class="chip">PID Control</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 7 -->
+    <div class="project-case reveal" data-proj>
+      <div class="proj-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="proj-num">07</div>
+        <div class="proj-meta">
+          <span class="proj-badge research">Materials Research</span>
+          <div class="proj-name">Ductile Iron Optimization</div>
+          <div class="proj-oneliner">Heat treatment analysis of Ferritic grade-400/15 for enhanced mechanical properties</div>
+        </div>
+        <div class="proj-toggle">+</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-body-inner">
+          <div class="proj-section">
+            <div class="proj-section-label">Research Objective</div>
+            <p>Investigate and optimize the mechanical properties of Ferritic grade-400/15 ductile iron through controlled heat treatment processes to determine the most effective thermal cycling parameters for enhanced performance in industrial castings.</p>
+          </div>
+          <div class="proj-section">
+            <div class="proj-section-label">Methodology</div>
+            <ul>
+              <li>Conducted systematic <strong>heat treatment cycles</strong> (annealing, normalizing, quenching) on standardized ductile iron specimens</li>
+              <li>Performed <strong>microstructure analysis</strong> using optical microscopy to evaluate phase transformations</li>
+              <li>Measured and compared tensile strength, hardness, and elongation across treatment parameters</li>
+              <li>Identified optimal treatment process for maximum mechanical performance improvement</li>
+            </ul>
+          </div>
+          <div class="proj-tech-row">
+            <span class="chip">Metallurgy</span><span class="chip">Heat Treatment</span><span class="chip">Microstructure Analysis</span><span class="chip">Optical Microscopy</span><span class="chip">Tensile Testing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Experience &amp; Education</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="exp-grid reveal">
+      <div>
+        <div class="exp-col-title">Work Experience</div>
+        <div class="exp-entry">
+          <div class="exp-date">JULY 2025 &mdash; Present</div>
+          <div class="exp-role">R&amp;D Engineer</div>
+          <div class="exp-org">Freshot Robotics Pvt Ltd &middot; Bangalore</div>
+          <div class="exp-desc">Executed end-to-end R&amp;D — designed and developed mechanical components and prototypes using advanced CAD tools and 3D printing. Developed electronic circuits for embedded control systems. Delivered creative and technically efficient solutions to complex engineering challenges.</div>
+          <div class="exp-award">&#x1F3C6; Best Employee of the Year 2025</div>
+        </div>
+        <div class="exp-entry">
+          <div class="exp-date">2024</div>
+          <div class="exp-role">PLC &amp; Automation Intern</div>
+          <div class="exp-org">Skytech Infinite Platform Pvt Ltd &middot; Bangalore</div>
+          <div class="exp-desc">Designed and developed ladder logic diagrams for industrial automation workflows. Collaborated on PLC programming, troubleshooting, and system integration. Participated in testing and commissioning to ensure optimal functionality.</div>
+        </div>
+        <div class="exp-entry">
+          <div class="exp-date">2022</div>
+          <div class="exp-role">UI/UX Design Intern</div>
+          <div class="exp-org">N-School &middot; Coimbatore</div>
+          <div class="exp-desc">Enhanced user experience and interface design for mobile applications. Gained exposure to app development fundamentals, design thinking, and responsive design principles.</div>
+        </div>
+        <div class="exp-entry">
+          <div class="exp-date">2021</div>
+          <div class="exp-role">R&amp;D Intern — Materials Engineering</div>
+          <div class="exp-org">Indo Shell Cast Pvt Ltd &middot; Coimbatore</div>
+          <div class="exp-desc">Collaborated with R&amp;D team to explore advanced casting techniques for ductile iron. Conducted microstructure analysis and developed effective casting methods for improved mechanical performance.</div>
+        </div>
+      </div>
+      <div>
+        <div class="exp-col-title">Education</div>
+        <div class="exp-entry">
+          <div class="exp-date">SEP 2022 &mdash; MAY 2025</div>
+          <div class="exp-role">B.E. Robotics &amp; Automation</div>
+          <div class="exp-org">SRM Easwari Engineering College &middot; Chennai</div>
+          <div class="exp-desc">CGPA: 8.4 — Specialized in embedded systems, robotics, mechatronics, sensor integration, motor control, and industrial automation.</div>
+        </div>
+        <div class="exp-entry">
+          <div class="exp-date">AUG 2019 &mdash; AUG 2022</div>
+          <div class="exp-role">Diploma — Foundry Technology</div>
+          <div class="exp-org">PSG Polytechnic College &middot; Coimbatore</div>
+          <div class="exp-desc">Score: 85.26% — Deep foundation in metallurgy, foundry processes, and manufacturing techniques.</div>
+        </div>
+        <div class="exp-entry">
+          <div class="exp-date">AUG 2019</div>
+          <div class="exp-role">SSLC</div>
+          <div class="exp-org">St. Antony Matriculation HSS &middot; Neyveli</div>
+          <div class="exp-desc">Score: 78%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Certifications &amp; Awards</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="certs-grid reveal">
+      <div class="cert-item">
+        <span class="cert-icon">&#128218;</span>
+        <div class="cert-title">Product Design &amp; Manufacturing</div>
+        <div class="cert-issuer">NPTEL &middot; IIT Certification</div>
+      </div>
+      <div class="cert-item">
+        <span class="cert-icon">&#127760;</span>
+        <div class="cert-title">Introduction to Internet of Things</div>
+        <div class="cert-issuer">NPTEL &middot; IIT Certification</div>
+      </div>
+      <div class="cert-item">
+        <span class="cert-icon">&#129302;</span>
+        <div class="cert-title">AI on Jetson Nano</div>
+        <div class="cert-issuer">NVIDIA &middot; Deep Learning Institute</div>
+      </div>
+      <div class="cert-item">
+        <span class="cert-icon">&#9881;&#65039;</span>
+        <div class="cert-title">SolidWorks CAD</div>
+        <div class="cert-issuer">Udemy &middot; Professional Development</div>
+      </div>
+    </div>
+    <div class="awards-row reveal">
+      <div class="award-pill"><span class="award-icon">&#x1F3C6;</span><div><strong>Best Employee</strong> &mdash; Freshot 2025</div></div>
+      <div class="award-pill"><span class="award-icon">&#x1F947;</span><div><strong>Winner</strong> &mdash; Agri Rover Expo</div></div>
+      <div class="award-pill"><span class="award-icon">&#x1F947;</span><div><strong>Winner</strong> &mdash; Self-Balancing Robot</div></div>
+      <div class="award-pill"><span class="award-icon">&#x1F948;</span><div><strong>Runner-up</strong> &mdash; Line Follower SRMEEC</div></div>
+      <div class="award-pill"><span class="award-icon">&#x1F3A4;</span><div><strong>Winner</strong> &mdash; Business Talk</div></div>
+      <div class="award-pill"><span class="award-icon">&#x1F948;</span><div><strong>Runner-up</strong> &mdash; Agri Rover Ideathon</div></div>
+      <div class="award-pill"><span class="award-icon">&#x1F4CB;</span><div><strong>Organized</strong> &mdash; Line Follower &amp; ASIMOV 2022</div></div>
+      <div class="award-pill"><span class="award-icon">&#x1F91D;</span><div><strong>Ambassador</strong> &mdash; Entrepreneurship Club</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-header reveal">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title">Contact</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="contact-layout">
+      <div class="reveal">
+        <div class="contact-big">LET'S BUILD<br><em>SOMETHING<br>REAL.</em></div>
+        <p class="contact-sub">Open to robotics, embedded systems, and hardware engineering roles. Ready to bring full-stack hardware expertise to challenging, real-world problems at scale.</p>
+        <div class="contact-links-list">
+          <a href="mailto:mvhariharan.23@gmail.com" class="c-link">
+            <span class="c-link-icon">@</span>
+            <span class="c-link-label">mvhariharan.23@gmail.com</span>
+            <span class="c-link-arrow">&#8594;</span>
+          </a>
+          <a href="tel:+919443417184" class="c-link">
+            <span class="c-link-icon">&#9742;</span>
+            <span class="c-link-label">+91 9443417184</span>
+            <span class="c-link-arrow">&#8594;</span>
+          </a>
+          <a href="https://linkedin.com/in/MV.HARIHARAN" class="c-link" target="_blank">
+            <span class="c-link-icon">in</span>
+            <span class="c-link-label">linkedin.com/in/MV.HARIHARAN</span>
+            <span class="c-link-arrow">&#8594;</span>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <div class="c-field">
+          <label>Your Name</label>
+          <input type="text" placeholder="John Doe">
+        </div>
+        <div class="c-field">
+          <label>Email</label>
+          <input type="email" placeholder="you@company.com">
+        </div>
+        <div class="c-field">
+          <label>Message</label>
+          <textarea rows="5" placeholder="I'd like to discuss a robotics opportunity..."></textarea>
+        </div>
+        <button class="btn-main" style="width:100%; justify-content: center; padding:1rem;" onclick="alert('Message sent! I\'ll get back to you shortly.')">Send Message &#8594;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>&copy; 2025 M.V. Hariharan &middot; Bangalore, India</span>
+  <span style="font-family:var(--display); font-weight:600; letter-spacing:0.05em;">ROBOTICS.EMBEDDED.ENGINEER</span>
+  <span>Engineered with precision</span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+setTimeout(() => {
+  const first = document.querySelector('[data-proj]');
+  if (first) first.classList.add('open');
+}, 800);
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
